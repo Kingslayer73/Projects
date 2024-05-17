@@ -1,18 +1,21 @@
-import React, { useContext} from "react";
-import { ThemeContext} from "./App"
+import React from "react";
+import { useTheme, useThemeUpdate } from "./ThemeContext"
 
 export default function FunctionalComponent(){
-const darkTheme = useContext(ThemeContext)
-const ThemeStyles = {
+const darkTheme = useTheme();
+const changeTheme = useThemeUpdate()
 
+const themeStyles = {
     backgroundColor : darkTheme ? "white" : "black",
     color : darkTheme ? "black" : "white",
-
+    padding : "4rem",
+    margin : "4rem"
 }
 
 return (
-    <div style = {ThemeStyles}>
-        <h1>useContext Test</h1>
-    </div>
+    <>
+        <button onClick={changeTheme}>Change Theme</button>
+        <div class = "box" style = {themeStyles}>Functional Theme</div>
+    </>
 );
 }
